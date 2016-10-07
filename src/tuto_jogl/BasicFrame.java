@@ -34,9 +34,13 @@ public class BasicFrame implements GLEventListener {
     public void display(GLAutoDrawable drawable) {
         final GL2 gl = drawable.getGL().getGL2();
 
-        gl.glBegin (GL2.GL_LINES);//static field
-        gl.glVertex3f(0.50f,-0.50f,0);
-        gl.glVertex3f(-0.50f,0.50f,0);
+        gl.glBegin(GL2.GL_QUADS);
+
+        gl.glVertex3f( 0.0f,0.75f,0);
+        gl.glVertex3f(-0.75f,0f,0);
+        gl.glVertex3f(0f,-0.75f,0);
+        gl.glVertex3f(0.75f,0f,0);
+
         gl.glEnd();
 
 
