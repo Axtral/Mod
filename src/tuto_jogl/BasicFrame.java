@@ -1,14 +1,18 @@
 package tuto_jogl;
 
+import com.jogamp.graph.geom.Triangle;
 import com.jogamp.nativewindow.util.*;
-import com.jogamp.opengl.GLCapabilities;
-import com.jogamp.opengl.GLProfile;
+import com.jogamp.opengl.*;
 import com.jogamp.opengl.awt.GLCanvas;
-import com.jogamp.opengl.GLAutoDrawable;
-import com.jogamp.opengl.GLEventListener;
 import com.jogamp.nativewindow.util.Dimension;
+import com.jogamp.opengl.GL2;
+import com.jogamp.opengl.GLAutoDrawable;
+import com.jogamp.opengl.GLCapabilities;
+import com.jogamp.opengl.GLEventListener;
+import com.jogamp.opengl.GLProfile;
 
-import javax.swing.*;
+
+import javax.swing.JFrame;
 import java.awt.*;
 
 /**
@@ -19,7 +23,6 @@ public class BasicFrame implements GLEventListener {
 
     @Override
     public void init(GLAutoDrawable arg0) {
-
     }
 
     @Override
@@ -28,7 +31,14 @@ public class BasicFrame implements GLEventListener {
     }
 
     @Override
-    public void display(GLAutoDrawable arg0) {
+    public void display(GLAutoDrawable drawable) {
+        final GL2 gl = drawable.getGL().getGL2();
+
+        gl.glBegin (GL2.GL_LINES);//static field
+        gl.glVertex3f(0.50f,-0.50f,0);
+        gl.glVertex3f(-0.50f,0.50f,0);
+        gl.glEnd();
+
 
     }
 
@@ -45,12 +55,13 @@ public class BasicFrame implements GLEventListener {
 
         final GLCanvas glcanvas = new GLCanvas( capabilities );
 
+
         BasicFrame b = new BasicFrame();
-        GLEventListener Interface;
+        //GLEventListener Interface;
         glcanvas.addGLEventListener( b);
         glcanvas.setSize( 400 , 400 );
 
-        final JFrame frame  = new JFrame ( "Basic Frame");
+        final JFrame frame  = new JFrame ( "Faire une ligne");
 
         frame.getContentPane().add( glcanvas);
         frame.setSize(frame.getContentPane().getPreferredSize());
