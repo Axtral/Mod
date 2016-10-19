@@ -42,6 +42,7 @@ public class Cube implements GLEventListener {
         gl.glVertex3f( -1.0f, 1.0f, 1.0f ); // Bottom Left Of The Quad (Top)
         gl.glVertex3f( 1.0f, 1.0f, 1.0f ); // Bottom Right Of The Quad (Top)
 
+
         gl.glColor3f( 0f,1f,0f ); //green color
         gl.glVertex3f( 1.0f, -1.0f, 1.0f ); // Top Right Of The Quad
         gl.glVertex3f( -1.0f, -1.0f, 1.0f ); // Top Left Of The Quad

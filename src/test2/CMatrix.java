@@ -7,6 +7,8 @@ public class CMatrix {
 
     private int[][] CMat = new  int[4][4];
 
+
+
     public CMatrix(){
 
         for(int i = 0 ; i < 4 ; ++i){
@@ -32,6 +34,10 @@ public class CMatrix {
 
     public int[][] getCMat(){
         return CMat;
+    }
+
+    public void setCMat(int[][] CMat) {
+        this.CMat = CMat;
     }
 
     public void Rotation(CMatrix Mat){
