@@ -8,5 +8,7 @@
     <orderEntry type="jdk" jdkName="1.8" jdkType="JavaSDK" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" name="JOGL" level="project" />
+    <orderEntry type="library" name="JOGL2" level="project" />
+    <orderEntry type="library" name="jar" level="project" />
   </component>
 </module>
