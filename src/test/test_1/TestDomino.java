@@ -23,7 +23,7 @@ public class TestDomino {
     private float rquad = 0.0f;
     private float rchute = 0.0f; //CHUTE
 
-    @Override
+    //@Override
     public void display( GLAutoDrawable drawable ) {
 
         final GL2 gl = drawable.getGL().getGL2();
@@ -86,12 +86,12 @@ public class TestDomino {
         if (rchute != 100) rchute += 1; // CHUTE
         //if (rchute ==100) rchute = 0; REINIT ROTATION CHUTE
     }
-    @Override
+    //@Override
     public void dispose( GLAutoDrawable drawable ) {
         // TODO Auto-generated method stub
     }
 
-    @Override
+    //@Override
     public void init( GLAutoDrawable drawable ) {
 
         final GL2 gl = drawable.getGL().getGL2();
@@ -103,7 +103,7 @@ public class TestDomino {
         gl.glHint( GL2.GL_PERSPECTIVE_CORRECTION_HINT, GL2.GL_NICEST );
     }
 
-    @Override
+    //@Override
     public void reshape( GLAutoDrawable drawable, int x, int y, int width, int height ) {
 
         // TODO Auto-generated method stub
@@ -143,4 +143,4 @@ public class TestDomino {
     }
 
 }
-}
+

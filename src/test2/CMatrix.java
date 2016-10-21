@@ -5,17 +5,14 @@ package test2;
  */
 public class CMatrix {
 
-    private int[][] CMat = new  int[4][4];
-
+    private float[][] CMat = new  float[4][4];
 
 
     public CMatrix(){
 
-        for(int i = 0 ; i < 4 ; ++i){
-            for (int j = 0; j < 4 ; ++j){
-                CMat[i][j] = 0;
-            }
-        }
+
+
+        CMat
 
     }// Crée la matrice qui sera utilisé pour la Translation et la Rotation
 
@@ -32,12 +29,16 @@ public class CMatrix {
         }
     }
 
-    public int[][] getCMat(){
-        return CMat;
+    public float[][] getCMat(){
+        return this.CMat;
     }
 
-    public void setCMat(int[][] CMat) {
-        this.CMat = CMat;
+    public void setCMat(float[][] Mat) {
+        this.CMat = Mat;
+    }
+
+    float GetX(){
+        return this.CMat[0][0];
     }
 
     public void Rotation(CMatrix Mat){
