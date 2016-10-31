@@ -39,7 +39,7 @@ public class CMatrixT {
 /*    */   public CMatrix(float Tx, float Ty, float Tz) {
 /* 33 */     this(new float[][] { { 1.0F, 0.0F, 0.0F, Tx }, { 0.0F, 1.0F, 0.0F, Ty }, { 0.0F, 0.0F, 1.0F, Tz }, { 0.0F, 0.0F, 0.0F, 1.0F } });
 /*    */   }
-    /*    */
+/*    */
 /*    */   public CMatrix Multiply(CMatrix Mat) {
 /* 37 */     float[][] MatA = this.m_content;
 /* 38 */     float[][] MatB = Mat.m_content;

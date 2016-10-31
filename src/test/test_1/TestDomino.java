@@ -37,7 +37,6 @@ public class TestDomino {
 
 
 
-        gl.glRotatef(rchute, -1f, 0f, 0f);// CHUTE
 
 
         // PLACER CENTRE GRAVITE DU DOMINO EN BAS ET NON AU CENTRE /!\
@@ -85,6 +84,13 @@ public class TestDomino {
         rquad -= 0.6f;	// INCREMENTATION ROTATION
         if (rchute != 100) rchute += 1; // CHUTE
         //if (rchute ==100) rchute = 0; REINIT ROTATION CHUTE
+
+        //ON MET UN SLEEP LA POUR AVOIR UN RAFRAICHISSEMENT
+        try {//DELIRE DE MERDE DU THREAD.SLEEP()
+            Thread.sleep(167);                 //1000 milliseconds is one second.
+        } catch(InterruptedException ex) {
+            Thread.currentThread().interrupt();
+        }
     }
     //@Override
     public void dispose( GLAutoDrawable drawable ) {

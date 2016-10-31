@@ -5,14 +5,14 @@ package test2;
  */
 public class CMatrix {
 
-    private float[][] CMat = new  float[4][4];
+    private float[][] CMat = new  float[4][4]; // faut pas l'init juste la declarer normalement?
 
 
     public CMatrix(){
 
 
 
-        CMat
+      //  CMat
 
     }// Crée la matrice qui sera utilisé pour la Translation et la Rotation
 
