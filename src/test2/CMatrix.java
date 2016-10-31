@@ -10,10 +10,11 @@ public class CMatrix {
     private float[][] CVect = new float[1][4];
 
 
-    public CMatrix(){
+    /*public CMatrix(){
 
+        float[][] CMat = new float[][];
 
-    }// Crée la matrice qui sera utilisé pour la Translation et la Rotation
+    }// Crée la matrice qui sera utilisé pour la Translation et la Rotation*/
 
 
 
@@ -55,12 +56,17 @@ public class CMatrix {
 
     public float[][] Translation(){
 
-        float[][] Trans = CMat;
+        float[][] Trans = CVect;
 
         for ( int i = 0; i < 4; ++i){
             for (int j = 0 ; j < 4; ++j ){
-                Trans[j][i] = getCMat()[j][i] * getCVect()[0][j];
+                CMat[j][i] = getCMat()[j][i] * getCVect()[0][j];
             }
+        }
+
+        for (int i= 0; i < 4; ++i){
+
+            Trans[0][i]= getCMat()[0][i] + getCMat()[1][i] + getCMat()[2][i] + getCMat()[3][i];
         }
 
         return Trans;
