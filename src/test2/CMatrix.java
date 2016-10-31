@@ -6,7 +6,8 @@ package test2;
 public class CMatrix {
 
     private float[][] CMat = new  float[4][4];
-    private float[][] CVect = new float[0][4];
+
+    private float[][] CVect = new float[1][4];
 
 
     public CMatrix(){
@@ -25,6 +26,10 @@ public class CMatrix {
         this.CMat = Mat;
     }
 
+    public float[][] getCVect() { return this.CVect;}
+
+    public void setCVect(float[][] CVect) { this.CVect = CVect;}
+
     float GetX(){
         return this.CMat[0][0];
     }
@@ -33,22 +38,28 @@ public class CMatrix {
 
     float GetZ() {return this.CMat[2][0];}
 
-    public float[][] Rotation(CMatrix Mat, float Angle){
+    public float[][] Rotation(){
 
         float[][] Rota = CMat;
+
+        for ( int i = 0; i < 4; ++i){
+            for (int j = 0 ; j < 4; ++j ){
+                Rota[j][i] = getCMat()[j][i] * getCVect()[0][j];
+            }
+        }
 
         return Rota;
 
 
     }
 
-    public float[][] Translation(CMatrix Mat, CMatrix Vect){
+    public float[][] Translation(){
 
         float[][] Trans = CMat;
 
-        for ( float i = 0; i < 4; ++i){
-            for (float j = 0 ; j < 4; ++j ){
-                Trans[j][i] = Mat[j][i] * Vect[0][j];
+        for ( int i = 0; i < 4; ++i){
+            for (int j = 0 ; j < 4; ++j ){
+                Trans[j][i] = getCMat()[j][i] * getCVect()[0][j];
             }
         }
 
