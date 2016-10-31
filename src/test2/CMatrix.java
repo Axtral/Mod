@@ -33,20 +33,26 @@ public class CMatrix {
 
     float GetZ() {return this.CMat[2][0];}
 
-    public CMatrix Rotation(CMatrix Mat, float Angle){
+    public float[][] Rotation(CMatrix Mat, float Angle){
+
+        float[][] Rota = CMat;
+
+        return Rota;
 
 
     }
 
-    public CMatrix Translation(CMatrix Mat, CMatrix Vect){
+    public float[][] Translation(CMatrix Mat, CMatrix Vect){
+
+        float[][] Trans = CMat;
 
         for ( float i = 0; i < 4; ++i){
             for (float j = 0 ; j < 4; ++j ){
-                Mat[j][i] = Mat[j][i] * Vect[0][j];
+                Trans[j][i] = Mat[j][i] * Vect[0][j];
             }
         }
 
-        return Mat;
+        return Trans;
     }
 
 
