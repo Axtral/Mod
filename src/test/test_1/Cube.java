@@ -9,6 +9,7 @@ import com.jogamp.opengl.GLEventListener;
 import com.jogamp.opengl.GLProfile;
 import com.jogamp.opengl.awt.GLCanvas;
 import com.jogamp.opengl.glu.GLU;
+import com.jogamp.opengl.GL3;
 
 import javax.swing.JFrame;
 
@@ -28,6 +29,8 @@ public class Cube implements GLEventListener {
 
         final GL2 gl = drawable.getGL().getGL2();
         gl.glClear(GL2.GL_COLOR_BUFFER_BIT | GL2.GL_DEPTH_BUFFER_BIT );
+        /*final GL3 gl = drawable.getGL().getGL3();
+        gl.glClear(GL3.GL_COLOR_BUFFER_BIT | GL3.GL_DEPTH_BUFFER_BIT);*/
         gl.glLoadIdentity();
         gl.glTranslatef( 0f, 0f, -5.0f );
 
