@@ -19,8 +19,9 @@ import com.jogamp.opengl.GLProfile;
 import com.jogamp.opengl.awt.GLCanvas;
 import com.jogamp.opengl.glu.GLU;
 import com.jogamp.opengl.util.FPSAnimator;
+import test2.CMatrix;
 
-public class Cube implements GLEventListener {
+public class TestDomino implements GLEventListener {
 
     public static DisplayMode dm, dm_old;
     private GLU glu = new GLU();
@@ -28,6 +29,50 @@ public class Cube implements GLEventListener {
     private float rchute = 0.0f; //CHUTE
 
     @Override
+
+    public void CreationDomino(){
+        CMatrix[] PointsSup;
+
+        float[][][] DominoMat = {
+                {{1f},  {0f}, {-0.5f}},
+                {{-1f}, {0f}, {-0.5f}},
+                {{-1f}, {0f}, {2.5f} },
+                {{1f},  {0f}, {2.5f} },
+
+                {{1f},  {-1f}, {-2.5f}},
+                {{-1},  {-1f}, {2.5f}},
+                {{-1f}, {-1f}, {-0.5f} },
+                {{1f},  {-1f}, {-0.5f} },
+
+                {{1f},  {0f}, {2.5f}},
+                {{-1f}, {0f}, {2.5f}},
+                {{-1f}, {-1f}, {2.5f} },
+                {{1f},  {-1f}, {2.5f} },
+
+                {{1f},  {0f}, {-0.5f}},
+                {{-1f}, {0f}, {-0.5f}},
+                {{-1f}, {-1f}, {-0.5f} },
+                {{1f},  {-1f}, {-0.5f} },
+
+                {{-1f},  {0f}, {2.5f}},
+                {{-1f}, {0f}, {-0.5f}},
+                {{-1f}, {-1f}, {-0.5f} },
+                {{-1f},  {-1f}, {2.5f} },
+
+                {{1f},  {0f}, {-0.5f}},
+                {{1f}, {0f}, {2.5f}},
+                {{1f}, {-1f}, {2.5f} },
+                {{1f},  {-1f}, {-0.5f} },
+        };//FIN MATRICE DOMINOMAT
+
+
+        CMatrix[] DomMat = new CMatrix[DominoMat.length];
+        for (int i = 0; i < DomMat.length; ++i)
+        {
+            DomMat[i] = new CMatrix(DominoMat[i]);
+        }//CREATION D'UN CMATRIX
+        PointsSup = DomMat;
+    }
     public void display( GLAutoDrawable drawable ) {
 
         final GL2 gl = drawable.getGL().getGL2();
@@ -43,48 +88,75 @@ public class Cube implements GLEventListener {
 
         gl.glRotatef(rchute, -1f, 0f, 0f);// CHUTE
 
-
-        // PLACER CENTRE GRAVITE DU DOMINO EN BAS ET NON AU CENTRE /!\
+        CreationDomino();
 
         //giving different colors to different sides
         gl.glBegin(GL2.GL_QUADS); // Start Drawing The Cube
+
         gl.glColor3f(1f,0f,0f); //red color
+        for (int i = 0; i < 4; i++) {
+            gl.glVertex3f(PointsSup[i].GetX(), PointsSup[i].GetY(), PointsSup[i].GetZ());
+         }
+
+        gl.glColor3f( 0f,1f,0f ); //green color
+        for (int i = 4; i < 8; i++) {
+            gl.glVertex3f(PointsSup[i].GetX(), PointsSup[i].GetY(), PointsSup[i].GetZ());
+        }
+
+        gl.glColor3f( 0f,0f,1f ); //blue color
+        for (int i = 8; i < 12; i++) {
+            gl.glVertex3f(PointsSup[i].GetX(), PointsSup[i].GetY(), PointsSup[i].GetZ());
+        }
+
+        gl.glColor3f( 1f,1f,0f ); //yellow (red + green)
+        for (int i = 12; i < 16; i++) {
+            gl.glVertex3f(PointsSup[i].GetX(), PointsSup[i].GetY(), PointsSup[i].GetZ());
+        }
+
+        gl.glColor3f( 1f,0f,1f ); //purple (red + green)
+        for (int i = 16; i < 20; i++) {
+            gl.glVertex3f(PointsSup[i].GetX(), PointsSup[i].GetY(), PointsSup[i].GetZ());
+        }
+
+        gl.glColor3f( 0f,1f, 1f ); //sky blue (blue +green)
+        for (int i = 20; i < 24; i++) {
+            gl.glVertex3f(PointsSup[i].GetX(), PointsSup[i].GetY(), PointsSup[i].GetZ());
+        }
+
+        gl.glEnd(); // Done Drawing The Quad
+        gl.glFlush();
+
+        /*
         gl.glVertex3f( 1f, 0f,-0.5f); // Top Right Of The Quad (Top)
         gl.glVertex3f(-1f, 0f,-0.5f); // Top Left Of The Quad (Top)
         gl.glVertex3f(-1f, 0f, 2.5f ); // Bottom Left Of The Quad (Top)
         gl.glVertex3f( 1f, 0f, 2.5f ); // Bottom Right Of The Quad (Top)
 
-        gl.glColor3f( 0f,1f,0f ); //green color
         gl.glVertex3f( 1f, -1f,  2.5f ); // Top Right Of The Quad
         gl.glVertex3f(-1f, -1f,  2.5f ); // Top Left Of The Quad
         gl.glVertex3f(-1f, -1f, -0.5f ); // Bottom Left Of The Quad
         gl.glVertex3f( 1f, -1f, -0.5f ); // Bottom Right Of The Quad
 
-        gl.glColor3f( 0f,0f,1f ); //blue color
         gl.glVertex3f( 1f,  0f, 2.5f ); // Top Right Of The Quad (Front)
         gl.glVertex3f(-1f,  0f, 2.5f ); // Top Left Of The Quad (Front)
         gl.glVertex3f(-1f, -1f, 2.5f ); // Bottom Left Of The Quad
         gl.glVertex3f( 1f, -1f, 2.5f ); // Bottom Right Of The Quad
 
-        gl.glColor3f( 1f,1f,0f ); //yellow (red + green)
         gl.glVertex3f( 1f,  0f, -0.5f ); // Bottom Left Of The Quad
         gl.glVertex3f(-1f,  0f, -0.5f ); // Bottom Right Of The Quad
         gl.glVertex3f(-1f, -1f, -0.5f ); // Top Right Of The Quad (Back)
         gl.glVertex3f( 1f, -1f, -0.5f ); // Top Left Of The Quad (Back)
 
-        gl.glColor3f( 1f,0f,1f ); //purple (red + green)
         gl.glVertex3f(-1f,  0f,  2.5f ); // Top Right Of The Quad (Left)
         gl.glVertex3f(-1f,  0f, -0.5f ); // Top Left Of The Quad (Left)
         gl.glVertex3f(-1f, -1f, -0.5f ); // Bottom Left Of The Quad
         gl.glVertex3f(-1f, -1f,  2.5f ); // Bottom Right Of The Quad
 
-        gl.glColor3f( 0f,1f, 1f ); //sky blue (blue +green)
         gl.glVertex3f(1f,  0f, -0.5f ); // Top Right Of The Quad (Right)
         gl.glVertex3f(1f,  0f,  2.5f ); // Top Left Of The Quad
         gl.glVertex3f(1f, -1f,  2.5f ); // Bottom Left Of The Quad
         gl.glVertex3f(1f, -1f, -0.5f ); // Bottom Right Of The Quad
-        gl.glEnd(); // Done Drawing The Quad
-        gl.glFlush();
+        */
 
         rquad += 0.3f;	// INCREMENTATION ROTATION
         //if (rchute != 100) rchute += 0.5; // CHUTE

@@ -10,9 +10,9 @@ public class CMatrix extends CVecteur{
 
     private float[][] CMat;
 
-    public CMatrix(int n, int j){
+    public CMatrix(float[][] Matrice){
 
-        CMat = new  float[n][j];
+        this.CMat = Matrice;
 
     }// Crée la matrice qui sera utilisé pour la Translation et la Rotation
 
@@ -49,13 +49,13 @@ public class CMatrix extends CVecteur{
         this.CMat = Mat;
     }
 
-    float GetX(){
+    public float GetX(){
         return this.CMat[0][0];
     }
 
-    float GetY() {return this.CMat[1][0];}
+    public float GetY() {return this.CMat[1][0];}
 
-    float GetZ() {return this.CMat[2][0];}
+    public float GetZ() {return this.CMat[2][0];}
 
     public float[][] Rotation(){
 
