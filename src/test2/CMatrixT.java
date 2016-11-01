@@ -6,8 +6,7 @@ package test2;
 public class CMatrixT {
 }
 
-
-/*    */ import java.io.PrintStream;
+/*    */ //import java.io.PrintStream;
 /*    */
 /*    */ public class CMatrix {
     /*    */   private float[][] m_content;

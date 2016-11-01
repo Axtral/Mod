@@ -5,16 +5,72 @@ package test2;
  */
 public class CMatrix {
 
-    private float[][] CMat = new  float[4][4]; // faut pas l'init juste la declarer normalement?
+    private float[][] CMat = new  float[4][4];
+
+    private float[][] CVect = new float[1][4];
 
 
-    public CMatrix(){
+    /*public CMatrix(){
+
+        float[][] CMat = new float[][];
+
+    }// Crée la matrice qui sera utilisé pour la Translation et la Rotation*/
 
 
 
-      //  CMat
 
-    }// Crée la matrice qui sera utilisé pour la Translation et la Rotation
+    public float[][] getCMat(){
+        return this.CMat;
+    }
+
+    public void setCMat(float[][] Mat) {
+        this.CMat = Mat;
+    }
+
+    public float[][] getCVect() { return this.CVect;}
+
+    public void setCVect(float[][] CVect) { this.CVect = CVect;}
+
+    float GetX(){
+        return this.CMat[0][0];
+    }
+
+    float GetY() {return this.CMat[1][0];}
+
+    float GetZ() {return this.CMat[2][0];}
+
+    public float[][] Rotation(){
+
+        float[][] Rota = CMat;
+
+        for ( int i = 0; i < 4; ++i){
+            for (int j = 0 ; j < 4; ++j ){
+                Rota[j][i] = getCMat()[j][i] * getCVect()[0][j];
+            }
+        }
+
+        return Rota;
+
+
+    }
+
+    public float[][] Translation(){
+
+        float[][] Trans = CVect;
+
+        for ( int i = 0; i < 4; ++i){
+            for (int j = 0 ; j < 4; ++j ){
+                CMat[j][i] = getCMat()[j][i] * getCVect()[0][j];
+            }
+        }
+
+        for (int i= 0; i < 4; ++i){
+
+            Trans[0][i]= getCMat()[0][i] + getCMat()[1][i] + getCMat()[2][i] + getCMat()[3][i];
+        }
+
+        return Trans;
+    }
 
 
     public void Afficher(){
@@ -27,26 +83,6 @@ public class CMatrix {
             }
 
         }
-    }
-
-    public float[][] getCMat(){
-        return this.CMat;
-    }
-
-    public void setCMat(float[][] Mat) {
-        this.CMat = Mat;
-    }
-
-    float GetX(){
-        return this.CMat[0][0];
-    }
-
-    public void Rotation(CMatrix Mat){
-
-    }
-
-    public void Translation(CMatrix Mat){
-
     }
 
     public static void main(String[] args){
