@@ -11,7 +11,11 @@ public class CVecteur {
         CVect = new float[1][4];
     }
 
-    public float[][] getCVect() { return this.CVect;}
+    public float[][] getCVect() {
+        return this.CVect;
+    }
 
-    public void setCVect(float[][] CVect) { this.CVect = CVect;}
+    public void setCVect(float[][] CVect) {
+        this.CVect = CVect;
+    }
 }

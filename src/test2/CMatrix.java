@@ -16,6 +16,17 @@ public class CMatrix {
 
     }// Crée la matrice qui sera utilisé pour la Translation et la Rotation*/
 
+    //CREATION DE 2 FONCTIONS UNE POUR MATRICE DE ROTATION L'AUTRE POUR MATRICE DE TRANSLATION
+
+    public void setCMatRotation() {
+
+        /*
+            ( 1 0 0 X)
+            ( 0 1 0 Y)
+            ( 0 0 1 Z)
+            ( 0 0 0 W)
+         */
+    }
 
 
 

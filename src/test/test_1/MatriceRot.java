@@ -40,9 +40,6 @@ public class MatriceRot {
         MatriceRot [0][3] = MatriceRot [0][3] * X;
         MatriceRot [1][3] = MatriceRot [1][3] * Y;
         MatriceRot [2][3] = MatriceRot [2][3] * Z;
-
-
-
     }
 
 
