@@ -1,20 +1,20 @@
 package test2;
 
+
+
+
 /**
  * Created by c14012299 on 14/10/2016.
  */
-public class CMatrix {
+public class CMatrix extends CVecteur{
 
-    private float[][] CMat = new  float[4][4];
+    private float[][] CMat;
 
-    private float[][] CVect = new float[1][4];
+    public CMatrix(){
 
+       CMat = new  float[4][4];
 
-    /*public CMatrix(){
-
-        float[][] CMat = new float[][];
-
-    }// Crée la matrice qui sera utilisé pour la Translation et la Rotation*/
+    }// Crée la matrice qui sera utilisé pour la Translation et la Rotation
 
     //CREATION DE 2 FONCTIONS UNE POUR MATRICE DE ROTATION L'AUTRE POUR MATRICE DE TRANSLATION
 
@@ -58,10 +58,6 @@ public class CMatrix {
         this.CMat = Mat;
     }
 
-    public float[][] getCVect() { return this.CVect;}
-
-    public void setCVect(float[][] CVect) { this.CVect = CVect;}
-
     float GetX(){
         return this.CMat[0][0];
     }
@@ -85,19 +81,19 @@ public class CMatrix {
 
     }
 
-    public float[][] Translation(){
+    public CVecteur Translation(CMatrix Mat, CVecteur Vect){
 
-        float[][] Trans = CVect;
+        CVecteur Trans = new CVecteur();
 
         for ( int i = 0; i < 4; ++i){
             for (int j = 0 ; j < 4; ++j ){
-                CMat[j][i] = getCMat()[j][i] * getCVect()[0][j];
+               Mat.getCMat()[j][i] = Mat.getCMat()[j][i] * Vect.getCVect()[0][j];
             }
         }
 
         for (int i= 0; i < 4; ++i){
 
-            Trans[0][i]= getCMat()[0][i] + getCMat()[1][i] + getCMat()[2][i] + getCMat()[3][i];
+            Trans.getCVect()[0][i]= Mat.getCMat()[0][i] + Mat.getCMat()[1][i] + Mat.getCMat()[2][i] + Mat.getCMat()[3][i];
         }
 
         return Trans;

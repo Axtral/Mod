@@ -5,10 +5,10 @@ package test2;
  */
 public class CVecteur {
 
-    private float[][] CVect = new float[1][4];
+    private float[][] CVect;
 
     public CVecteur() {
-        CVect = new float[1][4];
+        float[][] CVect = new float[1][4];
     }
 
     public float[][] getCVect() {
@@ -18,4 +18,11 @@ public class CVecteur {
     public void setCVect(float[][] CVect) {
         this.CVect = CVect;
     }
+
+
+    float GetXVect(){ return this.CVect[0][0];}
+
+    float GetYVect() {return this.CVect[0][1];}
+
+    float GetZVect() {return this.CVect[0][2];}
 }
