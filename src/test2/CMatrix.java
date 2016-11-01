@@ -18,15 +18,35 @@ public class CMatrix {
 
     //CREATION DE 2 FONCTIONS UNE POUR MATRICE DE ROTATION L'AUTRE POUR MATRICE DE TRANSLATION
 
-    public void setCMatRotation() {
-
+    public void CreateCMatTranslation() { //
         /*
             ( 1 0 0 X)
             ( 0 1 0 Y)
             ( 0 0 1 Z)
             ( 0 0 0 W)
          */
+
+        CMat [0][0] = 1;
+        CMat [1][1] = 1;
+        CMat [2][2] = 1;
     }
+
+    public void CreateCMatRotation(double teta) { //
+        /*
+            ( cos  -sin   0  X)
+            ( sin   cos   0  Y)
+            (  0     0    1  Z)
+            (  0     0    0  W)
+         */
+
+        float [][] MatriceRot = {{ (float)Math.cos(teta), (float)-Math.sin(teta), 0.0F, 0.0F },
+                { (float)Math.sin(teta), (float)Math.cos(teta), 0.0F, 0.0F },
+                { 0.0F, 0.0F, 1.0F, 0.0F },
+                { 0.0F, 0.0F, 0.0F, 1.0F } };
+
+        CMat = MatriceRot;
+    }
+
 
 
 

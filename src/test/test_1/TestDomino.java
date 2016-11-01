@@ -1,8 +1,12 @@
-package test.test_1;
-
-/**
- * Created by a14010387 on 20/10/16.
+/*
+ * 
+ * ROTATION DU CUBE: gl.glRotatef(rquad, 1.0f, 1.0f, 1.0f); 
+ * rquad = vitesse de rotation, modifier sa decrementation et son signe
+ * x,y,z, 2 à 0 pour une rotation 2D
+ *
  */
+
+
 import java.awt.DisplayMode;
 
 import javax.swing.JFrame;
@@ -16,14 +20,14 @@ import com.jogamp.opengl.awt.GLCanvas;
 import com.jogamp.opengl.glu.GLU;
 import com.jogamp.opengl.util.FPSAnimator;
 
-public class TestDomino {
+public class Cube implements GLEventListener {
 
     public static DisplayMode dm, dm_old;
     private GLU glu = new GLU();
     private float rquad = 0.0f;
     private float rchute = 0.0f; //CHUTE
 
-    //@Override
+    @Override
     public void display( GLAutoDrawable drawable ) {
 
         final GL2 gl = drawable.getGL().getGL2();
@@ -37,6 +41,7 @@ public class TestDomino {
 
 
 
+        gl.glRotatef(rchute, -1f, 0f, 0f);// CHUTE
 
 
         // PLACER CENTRE GRAVITE DU DOMINO EN BAS ET NON AU CENTRE /!\
@@ -81,23 +86,16 @@ public class TestDomino {
         gl.glEnd(); // Done Drawing The Quad
         gl.glFlush();
 
-        rquad -= 0.6f;	// INCREMENTATION ROTATION
-        if (rchute != 100) rchute += 1; // CHUTE
+        rquad += 0.3f;	// INCREMENTATION ROTATION
+        //if (rchute != 100) rchute += 0.5; // CHUTE
         //if (rchute ==100) rchute = 0; REINIT ROTATION CHUTE
-
-        //ON MET UN SLEEP LA POUR AVOIR UN RAFRAICHISSEMENT
-        try {//DELIRE DE MERDE DU THREAD.SLEEP()
-            Thread.sleep(167);                 //1000 milliseconds is one second.
-        } catch(InterruptedException ex) {
-            Thread.currentThread().interrupt();
-        }
     }
-    //@Override
+    @Override
     public void dispose( GLAutoDrawable drawable ) {
         // TODO Auto-generated method stub
     }
 
-    //@Override
+    @Override
     public void init( GLAutoDrawable drawable ) {
 
         final GL2 gl = drawable.getGL().getGL2();
@@ -109,7 +107,7 @@ public class TestDomino {
         gl.glHint( GL2.GL_PERSPECTIVE_CORRECTION_HINT, GL2.GL_NICEST );
     }
 
-    //@Override
+    @Override
     public void reshape( GLAutoDrawable drawable, int x, int y, int width, int height ) {
 
         // TODO Auto-generated method stub
@@ -139,7 +137,7 @@ public class TestDomino {
         glcanvas.addGLEventListener( cube );
         glcanvas.setSize( 400, 400 );
 
-        final JFrame frame = new JFrame ( " Multicolored cube" );
+        final JFrame frame = new JFrame ( " Chute Domino" );
         frame.getContentPane().add( glcanvas );
         frame.setSize( frame.getContentPane().getPreferredSize() );
         frame.setVisible( true );
@@ -149,4 +147,3 @@ public class TestDomino {
     }
 
 }
-
