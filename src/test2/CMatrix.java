@@ -87,7 +87,7 @@ public class CMatrix extends CVecteur{
             Vect.getCVect()[0][i]= Mat.getCMat()[0][i] + Mat.getCMat()[1][i] + Mat.getCMat()[2][i] + Mat.getCMat()[3][i];
         }
 
-        //return Trans;
+        return Vect;
     }
 
 
