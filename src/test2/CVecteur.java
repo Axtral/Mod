@@ -8,7 +8,7 @@ public class CVecteur {
     private float[][] CVect;
 
     public CVecteur() {
-        float[][] CVect = new float[1][4];
+        float[][] CVect = new float[1][3];
     }
 
     public float[][] getCVect() {

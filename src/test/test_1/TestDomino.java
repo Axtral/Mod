@@ -1,3 +1,7 @@
+package test.test_1;
+
+import test2.CMatrix;
+
 /*
  * 
  * ROTATION DU CUBE: gl.glRotatef(rquad, 1.0f, 1.0f, 1.0f); 
@@ -28,9 +32,23 @@ public class TestDomino implements GLEventListener {
     private float rquad = 0.0f;
     private float rchute = 0.0f; //CHUTE
 
-    @Override
 
-    public void CreationDomino(){
+
+    public void display( GLAutoDrawable drawable ) {
+
+        final GL2 gl = drawable.getGL().getGL2();
+        gl.glClear(GL2.GL_COLOR_BUFFER_BIT | GL2.GL_DEPTH_BUFFER_BIT );
+        gl.glLoadIdentity();
+        gl.glTranslatef( 0f, 0f, -12 ); // ZOOM
+
+        // Rotate The Cube On X, Y & Z
+        gl.glRotatef(50f, -5f,0f, 1f);//ORIENTATION CAMERA
+        gl.glRotatef(rquad, 0f, 0f, 1f);	 // ROTATION (rquad décrémentée)
+
+
+
+        gl.glRotatef(rchute, -1f, 0f, 0f);// CHUTE
+
         CMatrix[] PointsSup;
 
         float[][][] DominoMat = {
@@ -39,7 +57,7 @@ public class TestDomino implements GLEventListener {
                 {{-1f}, {0f}, {2.5f} },
                 {{1f},  {0f}, {2.5f} },
 
-                {{1f},  {-1f}, {-2.5f}},
+                {{1f},  {-1f}, {2.5f}},
                 {{-1},  {-1f}, {2.5f}},
                 {{-1f}, {-1f}, {-0.5f} },
                 {{1f},  {-1f}, {-0.5f} },
@@ -72,23 +90,9 @@ public class TestDomino implements GLEventListener {
             DomMat[i] = new CMatrix(DominoMat[i]);
         }//CREATION D'UN CMATRIX
         PointsSup = DomMat;
-    }
-    public void display( GLAutoDrawable drawable ) {
-
-        final GL2 gl = drawable.getGL().getGL2();
-        gl.glClear(GL2.GL_COLOR_BUFFER_BIT | GL2.GL_DEPTH_BUFFER_BIT );
-        gl.glLoadIdentity();
-        gl.glTranslatef( 0f, 0f, -12 ); // ZOOM
-
-        // Rotate The Cube On X, Y & Z
-        gl.glRotatef(50f, -5f,0f, 1f);//ORIENTATION CAMERA
-        gl.glRotatef(rquad, 0f, 0f, 1f);	 // ROTATION (rquad décrémentée)
 
 
 
-        gl.glRotatef(rchute, -1f, 0f, 0f);// CHUTE
-
-        CreationDomino();
 
         //giving different colors to different sides
         gl.glBegin(GL2.GL_QUADS); // Start Drawing The Cube
@@ -159,6 +163,7 @@ public class TestDomino implements GLEventListener {
         */
 
         rquad += 0.3f;	// INCREMENTATION ROTATION
+        //Translation();
         //if (rchute != 100) rchute += 0.5; // CHUTE
         //if (rchute ==100) rchute = 0; REINIT ROTATION CHUTE
     }
@@ -204,7 +209,7 @@ public class TestDomino implements GLEventListener {
 
         // The canvas
         final GLCanvas glcanvas = new GLCanvas( capabilities );
-        Cube cube = new Cube();
+        TestDomino cube = new TestDomino();
 
         glcanvas.addGLEventListener( cube );
         glcanvas.setSize( 400, 400 );

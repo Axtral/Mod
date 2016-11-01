@@ -18,7 +18,7 @@ public class CMatrix extends CVecteur{
 
     //CREATION DE 2 FONCTIONS UNE POUR MATRICE DE ROTATION L'AUTRE POUR MATRICE DE TRANSLATION
 
-    public CMatrix CreateCMatRotation(double teta) { //
+    public void CreateCMatRotation(double teta) { //
         /*
             ( cos  -sin   0  X)
             ( sin   cos   0  Y)
@@ -71,10 +71,10 @@ public class CMatrix extends CVecteur{
 
     }
 
-    public CVecteur Translation( CVecteur Vect){
+    public CVecteur Translation( CMatrix Mat, CVecteur Vect){
 
-        CVecteur Trans = new CVecteur();
-        CMatrix Mat = new CMatrix();
+        //CVecteur Trans = new CVecteur();
+
 
         for ( int i = 0; i < 4; ++i){
             for (int j = 0 ; j < 4; ++j ){
@@ -84,10 +84,10 @@ public class CMatrix extends CVecteur{
 
         for (int i= 0; i < 4; ++i){
 
-            Trans.getCVect()[0][i]= Mat.getCMat()[0][i] + Mat.getCMat()[1][i] + Mat.getCMat()[2][i] + Mat.getCMat()[3][i];
+            Vect.getCVect()[0][i]= Mat.getCMat()[0][i] + Mat.getCMat()[1][i] + Mat.getCMat()[2][i] + Mat.getCMat()[3][i];
         }
 
-        return Trans;
+        //return Trans;
     }
 
 
@@ -103,10 +103,10 @@ public class CMatrix extends CVecteur{
         }
     }
 
-    public static void main(String[] args){
+    /*public static void main(String[] args){
         CMatrix Mat = new CMatrix();
         Mat.Afficher();
 
-    }
+    }*/
 
 }//Classe Matrice qui contiendras tt les fonction liée au mathématique
