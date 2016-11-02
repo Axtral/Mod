@@ -32,8 +32,6 @@ public class TestDomino implements GLEventListener {
     private float rquad = 0.0f;
     private float rchute = 0.0f; //CHUTE
 
-
-
     public void display( GLAutoDrawable drawable ) {
 
         final GL2 gl = drawable.getGL().getGL2();
@@ -41,12 +39,9 @@ public class TestDomino implements GLEventListener {
         gl.glLoadIdentity();
         gl.glTranslatef( 0f, 0f, -12 ); // ZOOM
 
-        // Rotate The Cube On X, Y & Z
+        // ROTATION DU CUBE EN X, Y & Z
         gl.glRotatef(50f, -5f,0f, 1f);//ORIENTATION CAMERA
-        gl.glRotatef(rquad, 0f, 0f, 1f);	 // ROTATION (rquad décrémentée)
-
-
-
+        gl.glRotatef(rquad, 0f, 0f, 1f);// ROTATION
         gl.glRotatef(rchute, -1f, 0f, 0f);// CHUTE
 
         CMatrix[] PointsSup;
@@ -83,88 +78,52 @@ public class TestDomino implements GLEventListener {
                 {{1f},  {-1f}, {-0.5f} },
         };//FIN MATRICE DOMINOMAT
 
-
         CMatrix[] DomMat = new CMatrix[DominoMat.length];
         for (int i = 0; i < DomMat.length; ++i)
         {
             DomMat[i] = new CMatrix(DominoMat[i]);
         }//CREATION D'UN CMATRIX
         PointsSup = DomMat;
+        //^COORDONNES DU DOMINO STOCKEES
 
 
+        gl.glBegin(GL2.GL_QUADS); // COMMENCEMENT DE L'AFFICHAGE DU CUBE
 
-
-        //giving different colors to different sides
-        gl.glBegin(GL2.GL_QUADS); // Start Drawing The Cube
-
-        gl.glColor3f(1f,0f,0f); //red color
+        gl.glColor3f(1f,0f,0f); // ROUGE
         for (int i = 0; i < 4; i++) {
             gl.glVertex3f(PointsSup[i].GetX(), PointsSup[i].GetY(), PointsSup[i].GetZ());
          }
 
-        gl.glColor3f( 0f,1f,0f ); //green color
+        gl.glColor3f( 0f,1f,0f ); //VERT
         for (int i = 4; i < 8; i++) {
             gl.glVertex3f(PointsSup[i].GetX(), PointsSup[i].GetY(), PointsSup[i].GetZ());
         }
 
-        gl.glColor3f( 0f,0f,1f ); //blue color
+        gl.glColor3f( 0f,0f,1f ); //BLEU
         for (int i = 8; i < 12; i++) {
             gl.glVertex3f(PointsSup[i].GetX(), PointsSup[i].GetY(), PointsSup[i].GetZ());
         }
 
-        gl.glColor3f( 1f,1f,0f ); //yellow (red + green)
+        gl.glColor3f( 1f,1f,0f ); //JAUNE
         for (int i = 12; i < 16; i++) {
             gl.glVertex3f(PointsSup[i].GetX(), PointsSup[i].GetY(), PointsSup[i].GetZ());
         }
 
-        gl.glColor3f( 1f,0f,1f ); //purple (red + green)
+        gl.glColor3f( 1f,0f,1f ); //VIOLET
         for (int i = 16; i < 20; i++) {
             gl.glVertex3f(PointsSup[i].GetX(), PointsSup[i].GetY(), PointsSup[i].GetZ());
         }
 
-        gl.glColor3f( 0f,1f, 1f ); //sky blue (blue +green)
+        gl.glColor3f( 0f,1f, 1f ); //BLEU CIEL
         for (int i = 20; i < 24; i++) {
             gl.glVertex3f(PointsSup[i].GetX(), PointsSup[i].GetY(), PointsSup[i].GetZ());
         }
 
-        gl.glEnd(); // Done Drawing The Quad
+        gl.glEnd(); //FIN DE L'AFFICHAGE DU CUBE
         gl.glFlush();
 
-        /*
-        gl.glVertex3f( 1f, 0f,-0.5f); // Top Right Of The Quad (Top)
-        gl.glVertex3f(-1f, 0f,-0.5f); // Top Left Of The Quad (Top)
-        gl.glVertex3f(-1f, 0f, 2.5f ); // Bottom Left Of The Quad (Top)
-        gl.glVertex3f( 1f, 0f, 2.5f ); // Bottom Right Of The Quad (Top)
-
-        gl.glVertex3f( 1f, -1f,  2.5f ); // Top Right Of The Quad
-        gl.glVertex3f(-1f, -1f,  2.5f ); // Top Left Of The Quad
-        gl.glVertex3f(-1f, -1f, -0.5f ); // Bottom Left Of The Quad
-        gl.glVertex3f( 1f, -1f, -0.5f ); // Bottom Right Of The Quad
-
-        gl.glVertex3f( 1f,  0f, 2.5f ); // Top Right Of The Quad (Front)
-        gl.glVertex3f(-1f,  0f, 2.5f ); // Top Left Of The Quad (Front)
-        gl.glVertex3f(-1f, -1f, 2.5f ); // Bottom Left Of The Quad
-        gl.glVertex3f( 1f, -1f, 2.5f ); // Bottom Right Of The Quad
-
-        gl.glVertex3f( 1f,  0f, -0.5f ); // Bottom Left Of The Quad
-        gl.glVertex3f(-1f,  0f, -0.5f ); // Bottom Right Of The Quad
-        gl.glVertex3f(-1f, -1f, -0.5f ); // Top Right Of The Quad (Back)
-        gl.glVertex3f( 1f, -1f, -0.5f ); // Top Left Of The Quad (Back)
-
-        gl.glVertex3f(-1f,  0f,  2.5f ); // Top Right Of The Quad (Left)
-        gl.glVertex3f(-1f,  0f, -0.5f ); // Top Left Of The Quad (Left)
-        gl.glVertex3f(-1f, -1f, -0.5f ); // Bottom Left Of The Quad
-        gl.glVertex3f(-1f, -1f,  2.5f ); // Bottom Right Of The Quad
-
-        gl.glVertex3f(1f,  0f, -0.5f ); // Top Right Of The Quad (Right)
-        gl.glVertex3f(1f,  0f,  2.5f ); // Top Left Of The Quad
-        gl.glVertex3f(1f, -1f,  2.5f ); // Bottom Left Of The Quad
-        gl.glVertex3f(1f, -1f, -0.5f ); // Bottom Right Of The Quad
-        */
-
         rquad += 0.3f;	// INCREMENTATION ROTATION
-        //Translation();
-        //if (rchute != 100) rchute += 0.5; // CHUTE
+        if (rchute != 100) rchute += 0.5; //INCREMENTATION CHUTE
         //if (rchute ==100) rchute = 0; REINIT ROTATION CHUTE
     }
     @Override
@@ -224,3 +183,35 @@ public class TestDomino implements GLEventListener {
     }
 
 }
+        //ANCIENNE DECLARATION DES COORDONNES
+        /*
+        gl.glVertex3f( 1f, 0f,-0.5f); // Top Right Of The Quad (Top)
+        gl.glVertex3f(-1f, 0f,-0.5f); // Top Left Of The Quad (Top)
+        gl.glVertex3f(-1f, 0f, 2.5f ); // Bottom Left Of The Quad (Top)
+        gl.glVertex3f( 1f, 0f, 2.5f ); // Bottom Right Of The Quad (Top)
+
+        gl.glVertex3f( 1f, -1f,  2.5f ); // Top Right Of The Quad
+        gl.glVertex3f(-1f, -1f,  2.5f ); // Top Left Of The Quad
+        gl.glVertex3f(-1f, -1f, -0.5f ); // Bottom Left Of The Quad
+        gl.glVertex3f( 1f, -1f, -0.5f ); // Bottom Right Of The Quad
+
+        gl.glVertex3f( 1f,  0f, 2.5f ); // Top Right Of The Quad (Front)
+        gl.glVertex3f(-1f,  0f, 2.5f ); // Top Left Of The Quad (Front)
+        gl.glVertex3f(-1f, -1f, 2.5f ); // Bottom Left Of The Quad
+        gl.glVertex3f( 1f, -1f, 2.5f ); // Bottom Right Of The Quad
+
+        gl.glVertex3f( 1f,  0f, -0.5f ); // Bottom Left Of The Quad
+        gl.glVertex3f(-1f,  0f, -0.5f ); // Bottom Right Of The Quad
+        gl.glVertex3f(-1f, -1f, -0.5f ); // Top Right Of The Quad (Back)
+        gl.glVertex3f( 1f, -1f, -0.5f ); // Top Left Of The Quad (Back)
+
+        gl.glVertex3f(-1f,  0f,  2.5f ); // Top Right Of The Quad (Left)
+        gl.glVertex3f(-1f,  0f, -0.5f ); // Top Left Of The Quad (Left)
+        gl.glVertex3f(-1f, -1f, -0.5f ); // Bottom Left Of The Quad
+        gl.glVertex3f(-1f, -1f,  2.5f ); // Bottom Right Of The Quad
+
+        gl.glVertex3f(1f,  0f, -0.5f ); // Top Right Of The Quad (Right)
+        gl.glVertex3f(1f,  0f,  2.5f ); // Top Left Of The Quad
+        gl.glVertex3f(1f, -1f,  2.5f ); // Bottom Left Of The Quad
+        gl.glVertex3f(1f, -1f, -0.5f ); // Bottom Right Of The Quad
+        */

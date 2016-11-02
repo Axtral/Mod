@@ -1,11 +1,10 @@
 package test2;
 
 
-
-
 /**
  * Created by c14012299 on 14/10/2016.
  */
+
 public class CMatrix extends CVecteur{
 
     private float[][] CMat;
@@ -15,8 +14,6 @@ public class CMatrix extends CVecteur{
         this.CMat = Matrice;
 
     }// Crée la matrice qui sera utilisé pour la Translation et la Rotation
-
-    //CREATION DE 2 FONCTIONS UNE POUR MATRICE DE ROTATION L'AUTRE POUR MATRICE DE TRANSLATION
 
     public void CreateCMatRotation(double teta) { //
         /*
@@ -32,14 +29,7 @@ public class CMatrix extends CVecteur{
                 { 0.0F, 0.0F, 0.0F, 1.0F } };
 
         CMat = MatriceRot;
-
-
-
-        //multiply(content);
-    }
-
-
-
+    }//CREATECMATROTATION
 
     public float[][] getCMat(){
         return this.CMat;
@@ -58,38 +48,33 @@ public class CMatrix extends CVecteur{
     public float GetZ() {return this.CMat[2][0];}
 
     public float[][] Rotation(){
-
         float[][] Rota = CMat;
-
         for ( int i = 0; i < 4; ++i){
             for (int j = 0 ; j < 4; ++j ){
                 Rota[j][i] = getCMat()[j][i] * getCVect()[0][j];
             }
         }
         return Rota;
+    }//ROTATION
 
-
-    }
-
-    public CVecteur Translation( CMatrix Mat, CVecteur Vect){
-
-        //CVecteur Trans = new CVecteur();
-
+    public float[][] Multiply(CVecteur Vect) {
 
         for ( int i = 0; i < 4; ++i){
             for (int j = 0 ; j < 4; ++j ){
-               Mat.getCMat()[j][i] = Mat.getCMat()[j][i] * Vect.getCVect()[0][j];
+                this.getCMat()[j][i] = this.getCMat()[j][i] * Vect.getCVect()[0][j];
             }
         }
+        return this.getCMat();
+    }//MULTIPLY
 
+    public CVecteur Translation(CVecteur Vect){
+
+        Multiply(Vect);
         for (int i= 0; i < 4; ++i){
-
-            Vect.getCVect()[0][i]= Mat.getCMat()[0][i] + Mat.getCMat()[1][i] + Mat.getCMat()[2][i] + Mat.getCMat()[3][i];
+            Vect.getCVect()[0][i]= this.getCMat()[0][i] + this.getCMat()[1][i] + this.getCMat()[2][i] + this.getCMat()[3][i];
         }
-
         return Vect;
-    }
-
+    }//TRANSLATION
 
     public void Afficher(){
         for (int i = 0 ; i< 4;++i){
@@ -99,14 +84,12 @@ public class CMatrix extends CVecteur{
                 else
                     System.out.print(this.getCMat()[i][j] + " " );
             }
-
         }
-    }
+    }//AFFICHER
 
     /*public static void main(String[] args){
         CMatrix Mat = new CMatrix();
         Mat.Afficher();
 
     }*/
-
 }//Classe Matrice qui contiendras tt les fonction liée au mathématique
