@@ -7,15 +7,15 @@ package Projet;
 
 public class CMatrix extends CVecteur{
 
-    private float[][] CMat;
+    private float[][] CMat; //DECLARATION DE LA MATRICE
 
-    public CMatrix(float[][] Matrice){
+    public CMatrix(float[][] Matrice){ //CONSTRUCTEUR PAR DEFAUT
 
         this.CMat = Matrice;
 
-    }// Crée la matrice qui sera utilisé pour la Translation et la Rotation
+    }//CMATRIX
 
-    public void CreateCMatRotation(double teta) { //
+    public void CreateCMatRotation(double teta) { //CREATION D'UNE MATRICE DE ROTATION
         /*
             ( cos  -sin   0  X)
             ( sin   cos   0  Y)
@@ -23,7 +23,8 @@ public class CMatrix extends CVecteur{
             (  0     0    0  W)
          */
 
-        float [][] MatriceRot = {{ (float)Math.cos(teta), (float)-Math.sin(teta), 0.0F, 0.0F },
+        float [][] MatriceRot = {
+                { (float)Math.cos(teta), (float)-Math.sin(teta), 0.0F, 0.0F },
                 { (float)Math.sin(teta), (float)Math.cos(teta), 0.0F, 0.0F },
                 { 0.0F, 0.0F, 1.0F, 0.0F },
                 { 0.0F, 0.0F, 0.0F, 1.0F } };
@@ -47,7 +48,7 @@ public class CMatrix extends CVecteur{
 
     public float GetZ() {return this.CMat[2][0];}
 
-    public float[][] Rotation(){
+    public float[][] Rotation(){//PERMET LA ROTATION D'UNE MATRICE
         float[][] Rota = CMat;
         for ( int i = 0; i < 4; ++i){
             for (int j = 0 ; j < 4; ++j ){
@@ -58,7 +59,7 @@ public class CMatrix extends CVecteur{
 
     }//ROTATION
 
-    public float[][] Multiply(CVecteur Vect) {
+    public float[][] Multiply(CVecteur Vect) {//PERMET LA MULTIPLICATION D'UNE MATRICE PAR UN VECTEUR
 
         for ( int i = 0; i < Vect.GetLenght(); ++i){
             for (int j = 0 ; j < Vect.GetLenght(); ++j ){
@@ -68,9 +69,9 @@ public class CMatrix extends CVecteur{
         return this.getCMat();
     }//MULTIPLY
 
-    public CVecteur Translation(CVecteur Vect){
+    public CVecteur Translation(CVecteur Vect){//PERMET LA TRANSFORMATION D'UNE MATRICE EN VECTEUR DE TRANSLATION
 
-        Multiply(Vect);
+        this.setCMat(this.Multiply(Vect));
         for (int i= 0; i < 4; ++i){
             Vect.getCVect()[0][i]= this.getCMat()[0][i] + this.getCMat()[1][i] + this.getCMat()[2][i] + this.getCMat()[3][i];
         }
@@ -88,9 +89,5 @@ public class CMatrix extends CVecteur{
         }
     }//AFFICHER
 
-    /*public static void main(String[] args){
-        CMatrix Mat = new CMatrix();
-        Mat.Afficher();
 
-    }*/
-}//Classe Matrice qui contiendras tt les fonction liée au mathématique
+}//CMATRIX

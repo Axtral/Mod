@@ -5,7 +5,7 @@ package Projet;
  */
 public class CVecteur {
 
-    private float[][] CVect;
+    private float[][] CVect;//CREATION D'UN VECTEUR
 
     public CVecteur() {
         float[][] CVect = new float[1][4];
@@ -30,4 +30,4 @@ public class CVecteur {
     float GetYVect() {return this.CVect[0][1];}
 
     float GetZVect() {return this.CVect[0][2];}
-}
+}//CMATRIX

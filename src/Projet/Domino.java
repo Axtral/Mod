@@ -12,6 +12,7 @@ import java.awt.*;
 
 import javax.swing.JFrame;
 
+import Projet.CMatrix;
 
 import com.jogamp.opengl.GL2;
 import com.jogamp.opengl.GLAutoDrawable;
@@ -21,6 +22,7 @@ import com.jogamp.opengl.GLProfile;
 import com.jogamp.opengl.awt.GLCanvas;
 import com.jogamp.opengl.glu.GLU;
 import com.jogamp.opengl.util.FPSAnimator;
+import com.sun.org.apache.xalan.internal.xsltc.DOM;
 
 public class Domino implements GLEventListener {
 
@@ -32,11 +34,11 @@ public class Domino implements GLEventListener {
 
     public void display( GLAutoDrawable drawable ) {
 
-        final GL2 gl = drawable.getGL().getGL2();
+        final GL2 gl = drawable.getGL().getGL2();//CREATION DE L'OBJET
         gl.glClear(GL2.GL_COLOR_BUFFER_BIT | GL2.GL_DEPTH_BUFFER_BIT );
         gl.glLoadIdentity();
-        gl.glTranslatef( 0f, 0f, -12 ); // ZOOM
 
+        gl.glTranslatef( 0f, 0f, -12 ); // ZOOM
         // ROTATION DU CUBE EN X, Y & Z
         gl.glRotatef(50f, -5f,0f, 1f);//ORIENTATION CAMERA
         gl.glRotatef(rquad, 0f, 0f, 1f);// ROTATION
@@ -44,7 +46,7 @@ public class Domino implements GLEventListener {
 
         CMatrix[] PointsSup;
 
-        float[][][] DominoMat = {
+        float[][][] DominoMat = { //MATRICE 3 DIMENSIONS CONTENANT LES COORDONNES DU DOMINO DANS L'ESPACE
                 {{1f},  {0f}, {-0.5f}},
                 {{-1f}, {0f}, {-0.5f}},
                 {{-1f}, {0f}, {2.5f} },
@@ -80,13 +82,16 @@ public class Domino implements GLEventListener {
         for (int i = 0; i < DomMat.length; ++i)
         {
             DomMat[i] = new CMatrix(DominoMat[i]);
-        }//CREATION D'UN CMATRIX
+        }//CREATION D'UN CMATRIX A PARTIR DE LA MATRICE DE COORDONNEES
         PointsSup = DomMat;
         //^COORDONNES DU DOMINO STOCKEES
 
 
-        gl.glBegin(GL2.GL_QUADS); // COMMENCEMENT DE L'AFFICHAGE DU CUBE
 
+        PointsSup[DominoMat.length].setCMat(PointsSup[DominoMat.length].Multiply(Vecteur));
+
+        gl.glBegin(GL2.GL_QUADS); // COMMENCEMENT DE L'AFFICHAGE DU CUBE
+        //AFFICHAGE DE CHAQUE COTE DU CUBE, COTE PAR COTE
         gl.glColor3f(1f,0f,0f); // ROUGE
         for (int i = 0; i < 4; i++) {
             gl.glVertex3f(PointsSup[i].GetX(), PointsSup[i].GetY(), PointsSup[i].GetZ());
@@ -171,7 +176,7 @@ public class Domino implements GLEventListener {
         glcanvas.addGLEventListener( cube );
         glcanvas.setSize( 400, 400 );
 
-        final JFrame frame = new JFrame ( " Chute Domino" );
+        final JFrame frame = new JFrame ( " Chute Domino " );
         frame.getContentPane().add( glcanvas );
         frame.setSize( frame.getContentPane().getPreferredSize() );
         frame.setVisible( true );
@@ -181,7 +186,7 @@ public class Domino implements GLEventListener {
     }
 
 }
-//ANCIENNE DECLARATION DES COORDONNES
+//ANCIENNE DECLARATION DES COORDONNEES
         /*
         gl.glVertex3f( 1f, 0f,-0.5f); // Top Right Of The Quad (Top)
         gl.glVertex3f(-1f, 0f,-0.5f); // Top Left Of The Quad (Top)
