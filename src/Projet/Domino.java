@@ -8,9 +8,10 @@ package Projet;
  */
 
 
-import java.awt.DisplayMode;
+import java.awt.*;
 
 import javax.swing.JFrame;
+
 
 import com.jogamp.opengl.GL2;
 import com.jogamp.opengl.GLAutoDrawable;
@@ -27,6 +28,7 @@ public class Domino implements GLEventListener {
     private GLU glu = new GLU();
     private float rquad = 0.0f;
     private float rchute = 0.0f; //CHUTE
+
 
     public void display( GLAutoDrawable drawable ) {
 
@@ -81,6 +83,7 @@ public class Domino implements GLEventListener {
         }//CREATION D'UN CMATRIX
         PointsSup = DomMat;
         //^COORDONNES DU DOMINO STOCKEES
+
 
         gl.glBegin(GL2.GL_QUADS); // COMMENCEMENT DE L'AFFICHAGE DU CUBE
 

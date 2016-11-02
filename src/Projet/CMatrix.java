@@ -55,12 +55,13 @@ public class CMatrix extends CVecteur{
             }
         }
         return Rota;
+
     }//ROTATION
 
     public float[][] Multiply(CVecteur Vect) {
 
-        for ( int i = 0; i < 4; ++i){
-            for (int j = 0 ; j < 4; ++j ){
+        for ( int i = 0; i < Vect.GetLenght(); ++i){
+            for (int j = 0 ; j < Vect.GetLenght(); ++j ){
                 this.getCMat()[j][i] = this.getCMat()[j][i] * Vect.getCVect()[0][j];
             }
         }
