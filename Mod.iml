@@ -11,5 +11,6 @@
     <orderEntry type="library" name="JOGL2" level="project" />
     <orderEntry type="library" name="jar" level="project" />
     <orderEntry type="library" name="jarGL" level="project" />
+    <orderEntry type="library" name="jarjar" level="project" />
   </component>
 </module>
