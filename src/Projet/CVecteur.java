@@ -1,4 +1,4 @@
-package test2;
+package Projet;
 
 /**
  * Created by Alexandre on 31/10/2016.

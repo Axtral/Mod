@@ -1,10 +1,7 @@
-package test.test_1;
-
-import test2.CMatrix;
-
+package Projet;
 /*
- * 
- * ROTATION DU CUBE: gl.glRotatef(rquad, 1.0f, 1.0f, 1.0f); 
+ *
+ * ROTATION DU CUBE: gl.glRotatef(rquad, 1.0f, 1.0f, 1.0f);
  * rquad = vitesse de rotation, modifier sa decrementation et son signe
  * x,y,z, 2 à 0 pour une rotation 2D
  *
@@ -23,9 +20,8 @@ import com.jogamp.opengl.GLProfile;
 import com.jogamp.opengl.awt.GLCanvas;
 import com.jogamp.opengl.glu.GLU;
 import com.jogamp.opengl.util.FPSAnimator;
-import test2.CMatrix;
 
-public class TestDomino implements GLEventListener {
+public class Domino implements GLEventListener {
 
     public static DisplayMode dm, dm_old;
     private GLU glu = new GLU();
@@ -86,13 +82,12 @@ public class TestDomino implements GLEventListener {
         PointsSup = DomMat;
         //^COORDONNES DU DOMINO STOCKEES
 
-
         gl.glBegin(GL2.GL_QUADS); // COMMENCEMENT DE L'AFFICHAGE DU CUBE
 
         gl.glColor3f(1f,0f,0f); // ROUGE
         for (int i = 0; i < 4; i++) {
             gl.glVertex3f(PointsSup[i].GetX(), PointsSup[i].GetY(), PointsSup[i].GetZ());
-         }
+        }
 
         gl.glColor3f( 0f,1f,0f ); //VERT
         for (int i = 4; i < 8; i++) {
@@ -168,7 +163,7 @@ public class TestDomino implements GLEventListener {
 
         // The canvas
         final GLCanvas glcanvas = new GLCanvas( capabilities );
-        TestDomino cube = new TestDomino();
+        Domino cube = new Domino();
 
         glcanvas.addGLEventListener( cube );
         glcanvas.setSize( 400, 400 );
@@ -183,7 +178,7 @@ public class TestDomino implements GLEventListener {
     }
 
 }
-        //ANCIENNE DECLARATION DES COORDONNES
+//ANCIENNE DECLARATION DES COORDONNES
         /*
         gl.glVertex3f( 1f, 0f,-0.5f); // Top Right Of The Quad (Top)
         gl.glVertex3f(-1f, 0f,-0.5f); // Top Left Of The Quad (Top)
